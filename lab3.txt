@@ -1,0 +1,13 @@
+fum@IVANCOM-FC4Q91U:~$ sudo -u postgres psql
+psql (16.9 (Ubuntu 16.9-0ubuntu0.24.04.1))
+Type "help" for help.
+
+postgres=# CREATE DATABASE university;
+CREATE DATABASE
+postgres=# DROP DATABASE university;
+DROP DATABASE
+postgres=# CREATE DATABASE university;
+CREATE DATABASE
+postgres=# \c university
+You are now connected to database "university" as user "postgres".
+university=# \q
