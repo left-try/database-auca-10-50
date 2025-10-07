@@ -1,0 +1,56 @@
+postgres=# \dt
+                List of relations
+ Schema |        Name         | Type  |  Owner
+--------+---------------------+-------+----------
+ public | authors             | table | postgres
+ public | blog_posts          | table | postgres
+ public | book_authors        | table | postgres
+ public | books               | table | postgres
+ public | comments            | table | postgres
+ public | course_enrollments  | table | postgres
+ public | courses             | table | postgres
+ public | customers           | table | postgres
+ public | departments         | table | postgres
+ public | employees           | table | postgres
+ public | enrollments         | table | postgres
+ public | enrollments_bad     | table | postgres
+ public | loans               | table | postgres
+ public | members             | table | postgres
+ public | orders              | table | postgres
+ public | products            | table | postgres
+ public | student_enrollments | table | postgres
+ public | student_phones      | table | postgres
+ public | students            | table | postgres
+ public | students_bad        | table | postgres
+ public | transactions        | table | postgres
+ public | university_students | table | postgres
+ public | user_profiles       | table | postgres
+ public | users               | table | postgres
+(24 rows)
+
+postgres=# \d users
+                                           Table "public.users"
+   Column   |            Type             | Collation | Nullable |                Default
+------------+-----------------------------+-----------+----------+----------------------------------------
+ user_id    | integer                     |           | not null | nextval('users_user_id_seq'::regclass)
+ username   | character varying(50)       |           | not null |
+ email      | character varying(100)      |           | not null |
+ created_at | timestamp without time zone |           |          | CURRENT_TIMESTAMP
+Indexes:
+    "users_pkey" PRIMARY KEY, btree (user_id)
+    "users_email_key" UNIQUE CONSTRAINT, btree (email)
+    "users_username_key" UNIQUE CONSTRAINT, btree (username)
+Referenced by:
+    TABLE "user_profiles" CONSTRAINT "user_profiles_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+
+postgres=# \d students
+                         Table "public.students"
+    Column     |          Type          | Collation | Nullable | Default
+---------------+------------------------+-----------+----------+---------
+ student_id    | integer                |           | not null |
+ name          | character varying(100) |           |          |
+ department_id | integer                |           |          |
+Indexes:
+    "students_pkey1" PRIMARY KEY, btree (student_id)
+Foreign-key constraints:
+    "students_department_id_fkey" FOREIGN KEY (department_id) REFERENCES departments(department_id)
