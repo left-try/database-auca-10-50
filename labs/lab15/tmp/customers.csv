@@ -1,0 +1,4 @@
+customer_id;name;email;phone;created_at
+1;Alice Johnson;alice@example.com;+1555000001;2025-10-06 17:29:15.262247
+2;Bob Smith;bob@example.com;+1555000002;2025-10-06 17:29:15.262247
+3;Charlie Brown;charlie@example.com;+1555000003;2025-10-06 17:29:15.262247

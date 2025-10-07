@@ -1,0 +1,5 @@
+employee_id|first_name|last_name|email|department|salary|region_id
+1|Alice|Ivanova|alice@company.com|IT|75000.00|1
+2|Bob|Kim|bob@company.com|HR|64000.00|2
+3|Clara|Lee|clara@company.com|Finance|85000.00|1
+4|Dan|Uulu|dan@company.com|IT|72000.00|2
