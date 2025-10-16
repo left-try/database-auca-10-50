@@ -1,4 +1,7 @@
-### Labs 1-5
+### Labs 1 - 15
+
+I am notified about all deadlines and I will fullfill them in the time.
+
 * Lab 1: Basic psql Commands
 * Lab 2: First SQL Query
 * Lab 3: Databases
