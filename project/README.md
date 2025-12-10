@@ -111,7 +111,6 @@ Git + GitHub/GitLab for version control and submission
    ```
 .
 ├── README.md
-├── backup_restore.md
 ├── sql/
 │   ├── 01_schema_creation.sql
 │   ├── 02_data_insertion.sql
@@ -120,6 +119,7 @@ Git + GitHub/GitLab for version control and submission
 │   ├── 05_queries_advanced.sql
 │   └── 06_transactions_and_indexes.sql
 └── docs/
+    ├── backup_restore.md
     └── erd.png
 ```
 
@@ -131,7 +131,7 @@ File	Title	Purpose / Key Demonstrations
 - ```sql/04_queries_basic.sql```	Basic Queries	Demonstrates CRUD operations, simple joins, filters, and basic aggregation.
 - ```sql/05_queries_advanced.sql```	Advanced Queries	Uses CTEs, window functions, and more complex analytical queries.
 - ```sql/06_transactions_and_indexes.sql```	Transactions & Indexing Demonstration	Shows ACID transactions, SAVEPOINT, and index usage via EXPLAIN ANALYZE.
-- ```backup_restore.md```	Backup & Recovery Strategy	Documents how to back up and restore the database using pg_dump and pg_restore, with suggested strategies.
+- ```docs/backup_restore.md```	Backup & Recovery Strategy	Documents how to back up and restore the database using pg_dump and pg_restore, with suggested strategies.
 - ```docs/erd.png```	ER-diagram	Visual representation of entities and relationships in the database.
   
 ## 5. How to Run
@@ -161,11 +161,11 @@ CREATE DATABASE movie_streaming;
 \i sql/06_transactions_and_indexes.sql
 ```
 
-For backup and restore, follow the instructions in backup_restore.md.
+For backup and restore, follow the instructions in ```docs/backup_restore.md```.
 
 ## 6. ER-Diagram
 
-The ER-diagram for this project is located in docs/erd.png. It shows the main entities:
+The ER-diagram for this project is located in ```docs/erd.png```. It shows the main entities:
 
 - UserAccount, SubscriptionPlan, Subscription
 
