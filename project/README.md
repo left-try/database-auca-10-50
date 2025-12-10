@@ -133,7 +133,8 @@ File	Title	Purpose / Key Demonstrations
 - ```sql/06_transactions_and_indexes.sql```	Transactions & Indexing Demonstration	Shows ACID transactions, SAVEPOINT, and index usage via EXPLAIN ANALYZE.
 - ```backup_restore.md```	Backup & Recovery Strategy	Documents how to back up and restore the database using pg_dump and pg_restore, with suggested strategies.
 - ```docs/erd.png```	ER-diagram	Visual representation of entities and relationships in the database.
-5. How to Run
+  
+## 5. How to Run
 
 Open psql and execute the files in order:
 ```
@@ -162,7 +163,7 @@ CREATE DATABASE movie_streaming;
 
 For backup and restore, follow the instructions in backup_restore.md.
 
-6. ER-Diagram
+## 6. ER-Diagram
 
 The ER-diagram for this project is located in docs/erd.png. It shows the main entities:
 
