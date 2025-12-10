@@ -92,7 +92,7 @@ Backup and recovery strategy
 
 Documented in ```backup_restore.md```
 
-3. Technology Stack
+## 3. Technology Stack
 
 DBMS: PostgreSQL (version 12+; tested with PostgreSQL 17)
 
@@ -106,7 +106,8 @@ pgAdmin or DBeaver for GUI administration
 
 Git + GitHub/GitLab for version control and submission
 
-4. Repository Structure
+## 4. Repository Structure
+
    ```
 .
 ├── README.md
@@ -119,9 +120,8 @@ Git + GitHub/GitLab for version control and submission
 │   ├── 05_queries_advanced.sql
 │   └── 06_transactions_and_indexes.sql
 └── docs/
-    ├── erd.png
-    └── report.md   (optional – detailed project report)
-    ```
+    └── erd.png
+```
 
 File Overview
 File	Title	Purpose / Key Demonstrations
