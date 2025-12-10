@@ -42,7 +42,7 @@ This project is designed to satisfy the final project requirements for the Datab
 
 - Schema is defined in ```sql/01_schema_creation.sql```.
 
-- ER-diagram is provided in docs/erd.png.
+- ER-diagram is provided in docs/```erd.png```.
 
 Tables include:
 
@@ -80,31 +80,23 @@ More complex analytical queries (trending movies, churn risk, etc.)
 
 - Transactions and indexing demonstration
 
-- Demonstrated in sql/06_transactions_and_indexes.sql:
+- Demonstrated in ```sql/06_transactions_and_indexes.sql```:
 
-- Transaction blocks with BEGIN, COMMIT, ROLLBACK, and SAVEPOINT
+    - Transaction blocks with BEGIN, COMMIT, ROLLBACK, and SAVEPOINT
 
-- A realistic scenario (upgrading a subscription, inserting watch events)
+    - A realistic scenario (upgrading a subscription, inserting watch events)
 
 - Use of indexes (created in ```01_schema_creation.sql```) verified with EXPLAIN ANALYZE
 
-Backup and recovery strategy
+- Backup and recovery strategy
 
-Documented in ```backup_restore.md```
+    - Documented in ```docs/backup_restore.md```
 
 ## 3. Technology Stack
 
 DBMS: PostgreSQL (version 12+; tested with PostgreSQL 17)
 
 Language: SQL + PL/pgSQL (for stored function and trigger)
-
-Tools (optional):
-
-psql (command-line client)
-
-pgAdmin or DBeaver for GUI administration
-
-Git + GitHub/GitLab for version control and submission
 
 ## 4. Repository Structure
 
@@ -174,3 +166,90 @@ The ER-diagram for this project is located in ```docs/erd.png```. It shows the m
 - WatchHistory, Rating, Device
 
 and their relationships (1:N, M:N) as designed for this database.
+
+## 7. How to Test
+
+Requirements
+- PostgreSQL is installed and `psql`/`pg_restore` are on your PATH.
+- You have access to a PostgreSQL superuser (often `postgres`) or a user with CREATE DATABASE privileges.
+- Repository root: `C:\Users\leres\database-auca-10-50` (adjust `$root` if different).
+
+1) Create the database and load SQL (PowerShell)
+
+```powershell
+# create DB (run as postgres or a superuser)
+psql -U postgres -c "CREATE DATABASE movie_streaming;"
+
+$root = 'C:\Users\leres\database-auca-10-50'
+
+psql -U postgres -d movie_streaming -f "$root\project\sql\01_schema_creation.sql"
+psql -U postgres -d movie_streaming -f "$root\project\sql\02_data_insertion.sql"
+psql -U postgres -d movie_streaming -f "$root\project\sql\03_logic_and_views.sql"
+psql -U postgres -d movie_streaming -f "$root\project\sql\04_queries_basic.sql"
+psql -U postgres -d movie_streaming -f "$root\project\sql\05_queries_advanced.sql"
+psql -U postgres -d movie_streaming -f "$root\project\sql\06_transactions_and_indexes.sql"
+```
+
+
+2) Quick verification queries
+
+Connect to the database and run these checks to confirm schema and data were loaded correctly.
+
+```sql
+-- list tables
+\dt
+
+-- basic counts
+SELECT COUNT(*) AS users FROM user_account;
+SELECT COUNT(*) AS movies FROM movie;
+SELECT COUNT(*) AS genre_links FROM movie_genre;
+SELECT COUNT(*) AS watch_events FROM watch_history;
+
+-- sample views/results
+SELECT * FROM v_active_subscriptions LIMIT 5;
+SELECT * FROM v_movie_avg_ratings ORDER BY avg_rating DESC NULLS LAST LIMIT 5;
+SELECT * FROM v_trending_last_7_days LIMIT 10;
+
+-- function / trigger / index checks
+SELECT proname FROM pg_proc WHERE proname = 'get_active_plan';
+SELECT tgname FROM pg_trigger WHERE tgname = 'trg_one_active_sub';
+SELECT indexname, indexdef FROM pg_indexes WHERE schemaname = 'public' ORDER BY indexname LIMIT 20;
+```
+
+3) Optional automated assertions (run inside `psql -d movie_streaming -c "..."`)
+
+```sql
+DO $$
+BEGIN
+    IF (SELECT COUNT(*) FROM movie) = 0 THEN RAISE EXCEPTION 'No movies inserted'; END IF;
+    IF (SELECT COUNT(*) FROM user_account) = 0 THEN RAISE EXCEPTION 'No users inserted'; END IF;
+END
+$$;
+```
+
+4) Restoring provided backups
+
+The repository includes several backups in `lab15/pg_backups`. Use `psql` for plain `.sql` files and `pg_restore` for custom-format `.dump` files.
+
+Examples (PowerShell):
+
+```powershell
+# plain SQL
+psql -U postgres -d movie_streaming -f "C:\Users\leres\database-auca-10-50\lab15\pg_backups\backup.sql"
+
+# custom-format dump
+pg_restore -U postgres -d movie_streaming -v "C:\Users\leres\database-auca-10-50\lab15\pg_backups\backup.dump"
+
+# full-cluster dumps may require --create and restoring to the 'postgres' database
+pg_restore -U postgres --clean --create -d postgres "C:\Users\leres\database-auca-10-50\lab15\pg_backups\full_postgres.dump"
+```
+
+5) Docker alternative
+
+If you don't want to install PostgreSQL locally, you can run a container and execute the same `psql` commands inside it. For example:
+
+```powershell
+docker run -d --name pg-local -e POSTGRES_PASSWORD=mysecret -p 5432:5432 -v "$env:USERPROFILE\database-auca-10-50:/workspace" postgres:17
+docker exec -it pg-local psql -U postgres -c "CREATE DATABASE movie_streaming;"
+docker exec -it pg-local psql -U postgres -d movie_streaming -f /workspace/project/sql/01_schema_creation.sql
+```
