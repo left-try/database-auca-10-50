@@ -1,11 +1,11 @@
 -- Basic CRUD and simple reporting queries.
 
--- Q1: List all movies
+-- List all movies
 SELECT id, title, release_year, duration_min, age_rating
 FROM movie
 ORDER BY release_year DESC, title;
 
--- Q2: List movies with their genres
+-- List movies with their genres
 SELECT
     m.title,
     STRING_AGG(g.name, ', ' ORDER BY g.name) AS genres
@@ -15,7 +15,7 @@ LEFT JOIN genre g        ON g.id = mg.genre_id
 GROUP BY m.id, m.title
 ORDER BY m.title;
 
--- Q3: List users with their active subscription plan (if any)
+-- List users with their active subscription plan (if any)
 SELECT
     u.id,
     u.email,
@@ -23,7 +23,7 @@ SELECT
 FROM user_account u
 ORDER BY u.id;
 
--- Q4: Count movies per genre
+-- Count movies per genre
 SELECT
     g.name AS genre,
     COUNT(mg.movie_id) AS movie_count
@@ -32,7 +32,7 @@ LEFT JOIN movie_genre mg ON mg.genre_id = g.id
 GROUP BY g.name
 ORDER BY movie_count DESC;
 
--- Q6: Show last 5 watch history entries (basic SELECT with ORDER BY & LIMIT)
+-- Show last 5 watch history entries (basic SELECT with ORDER BY & LIMIT)
 SELECT
     wh.id,
     u.email,

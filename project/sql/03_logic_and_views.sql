@@ -45,9 +45,6 @@ BEFORE INSERT OR UPDATE ON subscription
 FOR EACH ROW
 EXECUTE FUNCTION enforce_one_active_subscription();
 
--- ============
--- VIEWS
--- ============
 
 -- Active subscriptions with user and plan info
 CREATE OR REPLACE VIEW v_active_subscriptions AS

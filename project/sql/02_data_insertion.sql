@@ -1,18 +1,10 @@
 -- Populates the Movie Streaming DB with sample data.
 
--- ==============
--- SUBSCRIPTION PLANS
--- ==============
-
 INSERT INTO subscription_plan (name, price_month, max_devices)
 VALUES
   ('Basic',    4.99, 1),
   ('Standard', 8.99, 2),
   ('Premium', 12.99, 4);
-
--- ==============
--- USERS
--- ==============
 
 INSERT INTO user_account (email, full_name, country)
 VALUES
@@ -22,10 +14,6 @@ VALUES
   ('sofia@example.com',   'Sofia Lopez', 'ES'),
   ('akmal@example.com',   'Akmal R.',    'UZ');
 
--- ==============
--- SUBSCRIPTIONS
--- ==============
-
 INSERT INTO subscription (user_id, plan_id, starts_on, ends_on, is_active)
 VALUES
   (1, 2, '2025-10-01', '2025-11-01', true),
@@ -33,10 +21,6 @@ VALUES
   (3, 3, '2025-09-15', '2025-10-15', false),
   (4, 2, '2025-10-05', '2025-11-05', true),
   (5, 3, '2025-10-20', '2025-11-20', true);
-
--- ==============
--- GENRES
--- ==============
 
 INSERT INTO genre (name)
 VALUES
@@ -46,10 +30,6 @@ VALUES
   ('Sci-Fi'),
   ('Horror'),
   ('Animation');
-
--- ==============
--- MOVIES
--- ==============
 
 INSERT INTO movie (title, release_year, duration_min, age_rating, description)
 VALUES
@@ -62,9 +42,6 @@ VALUES
   ('Double Life',      2022, 110, 'PG-13', 'Drama about parallel timelines.'),
   ('Campus Chaos',     2021,  99, 'PG-13', 'Comedy on a university campus.');
 
--- ==============
--- MOVIE-GENRE RELATION
--- ==============
 
 -- Sky Chase: Action, Sci-Fi
 INSERT INTO movie_genre (movie_id, genre_id) VALUES (1, 1), (1, 4);
@@ -90,9 +67,6 @@ INSERT INTO movie_genre (movie_id, genre_id) VALUES (7, 2), (7, 4);
 -- Campus Chaos: Comedy
 INSERT INTO movie_genre (movie_id, genre_id) VALUES (8, 3);
 
--- ==============
--- DEVICES
--- ==============
 
 INSERT INTO device (user_id, name, device_type)
 VALUES
@@ -102,10 +76,6 @@ VALUES
   (3, 'John TV',        'tv'),
   (4, 'Sofia Tablet',   'tablet'),
   (5, 'Akmal Laptop',   'web');
-
--- ==============
--- RATINGS
--- ==============
 
 INSERT INTO rating (user_id, movie_id, stars)
 VALUES
@@ -120,10 +90,6 @@ VALUES
   (4, 6, 5),
   (5, 7, 4),
   (5, 2, 3);
-
--- ==============
--- WATCH HISTORY
--- ==============
 
 INSERT INTO watch_history (user_id, movie_id, watched_at, progress_pct, device_type)
 VALUES

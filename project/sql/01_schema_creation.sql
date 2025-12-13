@@ -1,5 +1,4 @@
--- Creates all tables, constraints and indexes for the Movie Streaming DB.
--- Run after you create and \c into the movie_streaming database.
+-- Creates all tables, constraints and indexes for the Movie Streaming DB
 
 
 CREATE TABLE user_account (
