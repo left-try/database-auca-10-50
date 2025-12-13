@@ -1,5 +1,3 @@
--- Basic CRUD and simple reporting queries.
-
 -- List all movies
 SELECT id, title, release_year, duration_min, age_rating
 FROM movie

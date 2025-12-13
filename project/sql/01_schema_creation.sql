@@ -1,6 +1,3 @@
--- Creates all tables, constraints and indexes for the Movie Streaming DB
-
-
 CREATE TABLE user_account (
     id          BIGSERIAL PRIMARY KEY,
     email       TEXT UNIQUE NOT NULL,
@@ -43,7 +40,7 @@ CREATE TABLE genre (
     name  TEXT UNIQUE NOT NULL
 );
 
--- Many-to-many: movie <-> genre
+-- Conjustion table for many-to-many movie-genre relationship
 CREATE TABLE movie_genre (
     movie_id  BIGINT NOT NULL REFERENCES movie(id) ON DELETE CASCADE,
     genre_id  BIGINT NOT NULL REFERENCES genre(id) ON DELETE CASCADE,

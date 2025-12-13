@@ -1,5 +1,3 @@
--- Populates the Movie Streaming DB with sample data.
-
 INSERT INTO subscription_plan (name, price_month, max_devices)
 VALUES
   ('Basic',    4.99, 1),
@@ -68,6 +66,7 @@ INSERT INTO movie_genre (movie_id, genre_id) VALUES (7, 2), (7, 4);
 INSERT INTO movie_genre (movie_id, genre_id) VALUES (8, 3);
 
 
+-- Devices, ratings, and watch history for users
 INSERT INTO device (user_id, name, device_type)
 VALUES
   (1, 'Ali Phone',      'android'),

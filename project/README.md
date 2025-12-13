@@ -2,6 +2,7 @@
 
 > I promise to meet the deadline and will take disciplinary action if this requirement is not met.
 >
+
 ## Project Description
 
 This project implements a movie streaming platform database in PostgreSQL.

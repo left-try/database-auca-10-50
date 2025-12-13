@@ -1,5 +1,3 @@
--- Demonstrates transactions (ACID) and index usage with EXPLAIN ANALYZE.
-
 -- Scenario 1: upgrade a user's subscription plan in a transaction.
 
 BEGIN;

@@ -1,4 +1,3 @@
--- Advanced SQL queries: CTEs, window functions, more complex analytics.
 
 -- Trending movies (last 7 days) using the view
 SELECT *

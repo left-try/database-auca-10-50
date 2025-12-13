@@ -1,6 +1,3 @@
--- Business logic (function + trigger) and views.
-
-
 CREATE OR REPLACE FUNCTION get_active_plan(p_user BIGINT)
 RETURNS TEXT AS $$
 DECLARE
@@ -44,7 +41,6 @@ CREATE TRIGGER trg_one_active_sub
 BEFORE INSERT OR UPDATE ON subscription
 FOR EACH ROW
 EXECUTE FUNCTION enforce_one_active_subscription();
-
 
 -- Active subscriptions with user and plan info
 CREATE OR REPLACE VIEW v_active_subscriptions AS
